@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>HealthBear</title>
+    <item>
+      <title>Version 1.0.1</title>
+      <pubDate>Fri, 19 Jun 2026 01:14:27 GMT</pubDate>
+      <enclosure url="https://github.com/HEMNANT/healthbear-updates/releases/download/v1.0.1.2/HealthBear-Windows.zip" sparkle:os="windows" sparkle:version="1.0.1.2" sparkle:shortVersionString="1.0.1" sparkle:dsaSignature="MD0CHQC6x/HNqedOXeLy2GOr96X+LVM3qtqDLO6dx/g3Ahx6i8dINB4WluTkLpmW89SROU1oX2QvURkhTTpx" length="0" type="application/octet-stream" />
+    </item>
+  </channel>
+</rss>
