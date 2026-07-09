@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthBear - Clinic Portal Download</title>
     
-    <!-- Firebase SDK (Compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
-
     <style>
         :root {
             --primary: #004D99;
@@ -74,7 +70,7 @@
 
         /* Form Styles */
         .input-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
 
@@ -96,6 +92,8 @@
             font-size: 1rem;
             box-sizing: border-box;
             transition: border-color 0.2s, box-shadow 0.2s;
+            text-align: center;
+            letter-spacing: 2px;
         }
 
         input:focus {
@@ -115,7 +113,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
-            margin-top: 0.5rem;
         }
 
         button:hover {
@@ -164,25 +161,6 @@
             width: 24px;
             height: 24px;
         }
-
-        .logout-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 1rem;
-            padding: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-        }
-        
-        #loading {
-            display: none;
-            margin: 20px 0;
-            color: var(--text-muted);
-        }
     </style>
 </head>
 <body>
@@ -190,29 +168,23 @@
     <div class="container">
         <div class="logo">🐻</div>
         <h1>HealthBear Clinic</h1>
-        <p id="subtitle">Staff Authentication Required</p>
-
-        <div id="loading">Authenticating...</div>
+        <p id="subtitle">Enter clinic access code to continue</p>
 
         <!-- Login Form -->
         <div id="login-section">
             <form id="login-form">
                 <div class="input-group">
-                    <label for="email">Staff Email</label>
-                    <input type="email" id="email" required placeholder="reception@healthbear.com">
+                    <label for="passcode">Access Code</label>
+                    <input type="password" id="passcode" required placeholder="Enter Code">
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <button type="submit">Sign In to Download</button>
-                <div class="error-message" id="error-msg"></div>
+                <button type="submit">Unlock Downloads</button>
+                <div class="error-message" id="error-msg">Incorrect access code.</div>
             </form>
         </div>
 
         <!-- Download Links -->
         <div id="download-section">
-            <p style="color: #4ade80; margin-bottom: 1.5rem; font-weight: 500;">✓ Authenticated successfully</p>
+            <p style="color: #4ade80; margin-bottom: 1.5rem; font-weight: 500;">✓ Access Granted</p>
             
             <a href="https://github.com/HEMNANT/healthbear-updates/releases/latest/download/HealthBearSetup.exe" class="download-btn">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/></svg>
@@ -223,82 +195,35 @@
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.4162.4162 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.242 13.8533 7.8546 12 7.8546c-1.8533 0-3.5902.3874-5.1367 1.0958L4.841 5.4473a.4165.4165 0 0 0-.568-.1521.4156.4156 0 0 0-.1517.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3436-4.1021-2.6892-7.5743-6.1185-9.4396"/></svg>
                 Download for Android (APK)
             </a>
-
-            <button class="logout-btn" id="logout-btn">Sign Out</button>
         </div>
     </div>
 
     <script>
-        // Firebase Configuration (from your Flutter Web config)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDsZYNNaqfbMclOzXOBehThD9BhTS3NL7g",
-            authDomain: "quantam-market.firebaseapp.com",
-            databaseURL: "https://quantam-market-default-rtdb.firebaseio.com",
-            projectId: "quantam-market",
-            storageBucket: "quantam-market.firebasestorage.app",
-            messagingSenderId: "275250297765",
-            appId: "1:275250297765:web:65382984e3d6fbca24464c",
-            measurementId: "G-TMFLJ81KBM"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        // UI Elements
         const loginSection = document.getElementById('login-section');
         const downloadSection = document.getElementById('download-section');
         const loginForm = document.getElementById('login-form');
         const errorMsg = document.getElementById('error-msg');
-        const logoutBtn = document.getElementById('logout-btn');
         const subtitle = document.getElementById('subtitle');
-        const loading = document.getElementById('loading');
 
-        // Listen for auth state changes
-        auth.onAuthStateChanged((user) => {
-            loading.style.display = 'none';
-            if (user) {
-                // User is signed in
-                loginSection.style.display = 'none';
-                downloadSection.style.display = 'block';
-                subtitle.innerText = "Download Latest Clinic Software";
-            } else {
-                // User is signed out
-                loginSection.style.display = 'block';
-                downloadSection.style.display = 'none';
-                subtitle.innerText = "Staff Authentication Required";
-            }
-        });
+        // The simple access code to unlock the page
+        const ACCESS_CODE = "HB2026";
 
-        // Handle Login
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             errorMsg.style.display = 'none';
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const btn = e.target.querySelector('button');
+            const passcode = document.getElementById('passcode').value;
             
-            btn.innerText = 'Authenticating...';
-            btn.disabled = true;
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    btn.innerText = 'Sign In to Download';
-                    btn.disabled = false;
-                    loginForm.reset();
-                })
-                .catch((error) => {
-                    btn.innerText = 'Sign In to Download';
-                    btn.disabled = false;
-                    errorMsg.innerText = error.message.replace("Firebase:", "").trim();
-                    errorMsg.style.display = 'block';
-                });
-        });
-
-        // Handle Logout
-        logoutBtn.addEventListener('click', () => {
-            auth.signOut();
+            if (passcode === ACCESS_CODE) {
+                // Success
+                loginSection.style.display = 'none';
+                downloadSection.style.display = 'block';
+                subtitle.innerText = "Download Latest Clinic Software";
+            } else {
+                // Error
+                errorMsg.style.display = 'block';
+                document.getElementById('passcode').value = '';
+            }
         });
     </script>
 </body>
