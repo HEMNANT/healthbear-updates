@@ -4,8 +4,8 @@
     <title>HealthBear</title>
     <item>
       <title>Version 1.0.8</title>
-      <pubDate>Wed, 22 Jul 2026 09:17:51 GMT</pubDate>
-      <enclosure url="https://github.com/HEMNANT/healthbear-updates/releases/download/v1.0.8.14/HealthBearSetup.exe" sparkle:os="windows" sparkle:version="1.0.8+14" sparkle:shortVersionString="1.0.8" sparkle:dsaSignature="MD0CHQCy7sCDe4IwkI07IMNMEbwTGkwd21yyy8CYS9VIAhx1U4uy8z164tQkdNuJaQdFub0/SUcjfqFdNSJH" length="23531311" type="application/octet-stream" />
+      <pubDate>Wed, 22 Jul 2026 09:34:08 GMT</pubDate>
+      <enclosure url="https://github.com/HEMNANT/healthbear-updates/releases/download/v1.0.8.14/HealthBearSetup.exe" sparkle:os="windows" sparkle:version="1.0.8+14" sparkle:shortVersionString="1.0.8" sparkle:dsaSignature="MDwCHCQn75C05YtNN5DkDAOK/UkxWLDY6/F6dIilhwECHFx4xQfGCrhNrTv+HwgOCLiPf5WmqMKLsjAK0UQ=" length="23529282" type="application/octet-stream" />
     </item>
   </channel>
 </rss>
