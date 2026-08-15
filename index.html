@@ -205,10 +205,8 @@
         const errorMsg = document.getElementById('error-msg');
         const subtitle = document.getElementById('subtitle');
 
-        // The SHA-256 hash of the access code ("HB2026")
         const HASHED_CODE = "79c0c869c05d4eda031f15bbddcc664a4fa0474f3957dd63371af622f460297a";
 
-        // Helper function to hash string with SHA-256
         async function sha256(message) {
             const msgBuffer = new TextEncoder().encode(message);
             const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
