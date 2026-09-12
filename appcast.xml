@@ -3,9 +3,9 @@
   <channel>
     <title>HealthBear</title>
     <item>
-      <title>Version 1.0.15</title>
-      <pubDate>Wed, 05 Aug 2026 02:34:18 GMT</pubDate>
-      <enclosure url="https://github.com/HEMNANT/healthbear-updates/releases/download/v1.0.15.21/HealthBearSetup.exe" sparkle:os="windows" sparkle:version="1.0.15+21" sparkle:shortVersionString="1.0.15" sparkle:dsaSignature="MDwCHClqcch0AuvPZb52TtDVtsqIK/na/7gZgAWmhX4CHA7QKqoFisfav5UCUMs4VX2AmzhFFTkaEjiPszY=" length="23577711" type="application/octet-stream" />
+      <title>Version 1.0.16</title>
+      <pubDate>Sat, 12 Sep 2026 14:28:40 GMT</pubDate>
+      <enclosure url="https://github.com/HEMNANT/healthbear-updates/releases/download/v1.0.16.22/HealthBearSetup.exe" sparkle:os="windows" sparkle:version="1.0.16+22" sparkle:shortVersionString="1.0.16" sparkle:dsaSignature="MD0CHHx9+kyZli+cx7NIlXz+cNOoWdYPdyZU2gZkmIgCHQDYaIecZJW+WSlqCP5j0Eb7sPoX/g2Ep2w7Dl5x" length="23075230" type="application/octet-stream" />
     </item>
   </channel>
 </rss>
